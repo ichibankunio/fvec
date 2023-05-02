@@ -2,6 +2,8 @@ package vec3
 
 import (
 	"math"
+
+	"github.com/ichibankunio/fvec/vec2"
 )
 
 type Vec3 struct {
@@ -89,6 +91,6 @@ func (v Vec3) Sign() Vec3 {
 	return sign
 }
 
-// func (v Vec3) XY() vec2.Vec2 {
-// 	return vec2.New(v.X, v.Y)
-// }
+func (v Vec3) XY() vec2.Vec2 {
+	return vec2.New(v.X, v.Y)
+}
