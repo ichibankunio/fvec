@@ -1,6 +1,9 @@
 package vec2
 
-import "math"
+import (
+	"math"
+	"math/rand"
+)
 
 type Vec2 struct {
 	X float64
@@ -59,7 +62,7 @@ func (v Vec2) Scale(s float64) Vec2 {
 }
 
 func (v Vec2) Mul(other Vec2) Vec2 {
-	return New(v.X * other.X, v.Y * other.Y)
+	return New(v.X*other.X, v.Y*other.Y)
 }
 
 func (v Vec2) Floor() Vec2 {
@@ -80,4 +83,20 @@ func (v Vec2) Sign() Vec2 {
 	}
 
 	return sign
+}
+
+func RandomDirection() Vec2 {
+	return (&Vec2{
+		rand.Float64() - 0.5,
+		rand.Float64() - 0.5,
+	}).Normalize()
+}
+
+func (v Vec2) Normalize() Vec2 {
+	len := v.Length()
+	if len != 0 {
+		v.X /= len
+		v.Y /= len
+	}
+	return v
 }
