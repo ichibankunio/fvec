@@ -16,12 +16,28 @@ func New(x, y, z float64) Vec3 {
 	return Vec3{x, y, z}
 }
 
+// func (v Vec3) Add(other Vec3) Vec3 {
+// 	return New(v.X+other.X, v.Y+other.Y, v.Z+other.Z)
+// }
+
 func (v Vec3) Add(other Vec3) Vec3 {
-	return New(v.X+other.X, v.Y+other.Y, v.Z+other.Z)
+	v.X += other.X
+	v.Y += other.Y
+	v.Z += other.Z
+
+	return v
 }
 
+// func (v Vec3) Sub(other Vec3) Vec3 {
+// 	return New(v.X-other.X, v.Y-other.Y, v.Z-other.Z)
+// }
+
 func (v Vec3) Sub(other Vec3) Vec3 {
-	return New(v.X-other.X, v.Y-other.Y, v.Z-other.Z)
+	v.X -= other.X
+	v.Y -= other.Y
+	v.Z -= other.Z
+
+	return v
 }
 
 func (v Vec3) Length() float64 {
@@ -60,35 +76,85 @@ func NewArray(arr [][3]float64) []Vec3 {
 // 	return math.Atan2(v.X, v.Y)
 // }
 
+// func (v Vec3) Scale(s float64) Vec3 {
+// 	return New(v.X*s, v.Y*s, v.Z*s)
+// }
+
 func (v Vec3) Scale(s float64) Vec3 {
-	return New(v.X*s, v.Y*s, v.Z*s)
-}
+	v.X *= s
+	v.Y *= s
+	v.Z *= s
+
+	return v
+} 
+
+// func (v Vec3) Mul(other Vec3) Vec3 {
+// 	return New(v.X*other.X, v.Y*other.Y, v.Z*other.Z)
+// }
 
 func (v Vec3) Mul(other Vec3) Vec3 {
-	return New(v.X*other.X, v.Y*other.Y, v.Z*other.Z)
+	v.X *= other.X
+	v.Y *= other.Y
+	v.Z *= other.Z
+
+	return v
 }
+
+// func (v Vec3) Floor() Vec3 {
+// 	return New(math.Floor(v.X), math.Floor(v.Y), math.Floor(v.Z))
+// }
 
 func (v Vec3) Floor() Vec3 {
-	return New(math.Floor(v.X), math.Floor(v.Y), math.Floor(v.Z))
+	v.X = math.Floor(v.X)
+	v.Y = math.Floor(v.Y)
+	v.Z = math.Floor(v.Z)
+	
+	return v
 }
+
+// func (v Vec3) Abs() Vec3 {
+// 	return New(math.Abs(v.X), math.Abs(v.Y), math.Floor(v.Z))
+// }
 
 func (v Vec3) Abs() Vec3 {
-	return New(math.Abs(v.X), math.Abs(v.Y), math.Floor(v.Z))
+	v.X = math.Abs(v.X)
+	v.Y = math.Abs(v.Y)
+	v.Z = math.Abs(v.Z)
+
+	return v
 }
 
+// func (v Vec3) Sign() Vec3 {
+// 	sign := New(1, 1, 1)
+// 	if v.X < 0 {
+// 		sign.X = -1
+// 	}
+// 	if v.Y < 0 {
+// 		sign.Y = -1
+// 	}
+// 	if v.Z < 0 {
+// 		sign.Z = -1
+// 	}
+
+// 	return sign
+// }
+
 func (v Vec3) Sign() Vec3 {
-	sign := New(1, 1, 1)
+	v.X = 1
+	v.Y = 1
+	v.Z = 1
+
 	if v.X < 0 {
-		sign.X = -1
+		v.X = -1
 	}
 	if v.Y < 0 {
-		sign.Y = -1
+		v.Y = -1
 	}
 	if v.Z < 0 {
-		sign.Z = -1
+		v.Z = -1
 	}
 
-	return sign
+	return v
 }
 
 func (v Vec3) XY() vec2.Vec2 {
