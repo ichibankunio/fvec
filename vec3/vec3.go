@@ -1,6 +1,7 @@
 package vec3
 
 import (
+	"fmt"
 	"math"
 
 	"github.com/ichibankunio/fvec/vec2"
@@ -19,6 +20,10 @@ func New(x, y, z float64) Vec3 {
 // func (v Vec3) Add(other Vec3) Vec3 {
 // 	return New(v.X+other.X, v.Y+other.Y, v.Z+other.Z)
 // }
+
+func NewFromVec2(v vec2.Vec2) Vec3 {
+	return Vec3{v.X, v.Y, 0}
+}
 
 func (v Vec3) Add(other Vec3) Vec3 {
 	v.X += other.X
@@ -86,7 +91,7 @@ func (v Vec3) Scale(s float64) Vec3 {
 	v.Z *= s
 
 	return v
-} 
+}
 
 // func (v Vec3) Mul(other Vec3) Vec3 {
 // 	return New(v.X*other.X, v.Y*other.Y, v.Z*other.Z)
@@ -108,7 +113,7 @@ func (v Vec3) Floor() Vec3 {
 	v.X = math.Floor(v.X)
 	v.Y = math.Floor(v.Y)
 	v.Z = math.Floor(v.Z)
-	
+
 	return v
 }
 
@@ -159,4 +164,8 @@ func (v Vec3) Sign() Vec3 {
 
 func (v Vec3) XY() vec2.Vec2 {
 	return vec2.New(v.X, v.Y)
+}
+
+func (v Vec3) Print() {
+	fmt.Printf("{%f, %f, %f}\n", v.X, v.Y, v.Z)
 }
